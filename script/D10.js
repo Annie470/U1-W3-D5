@@ -425,24 +425,56 @@ console.log(searchByTitle("dogtown"));
   Scrivi una funzione chiamata "searchAndDivide" che riceve una stringa come parametro e ritorna un oggetto contenente due array: "match" e "unmatch".
   "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
 */
+const searchAndDivide = (stringa) => {
+  const obj2 = {
+    match: [],
+    unmatch: [],
+  };
+  movies.forEach((film) => {
+    film.Title.toLowerCase().includes(stringa.toLowerCase())
+      ? obj2.match.push(film)
+      : obj2.unmatch.push(film); //ancora bellissimissimo
+  });
+
+  return obj2;
+};
+console.log(searchAndDivide("endgame"));
 
 /* ESERCIZIO 19
   Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
 */
+const removeIndex = (n) => {
+  return movies.filter((film, i) => i !== n);
+};
+console.log(removeIndex(4));
 
 // DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
 
 /* ESERCIZIO 20
   Scrivi una funzione per selezionare l'elemento dotato di id "container" all'interno della pagina.
 */
+const trovaContainer = () => {
+  const container = document.getElementById("container");
+  return container;
+};
 
 /* ESERCIZIO 21
   Scrivi una funzione per selezionare ogni tag <td> all'interno della pagina.
 */
+const tuttiITd = () => {
+  const collectionTd = document.getElementsByTagName("td");
+  return collectionTd;
+};
 
 /* ESERCIZIO 22
   Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
 */
+const testoTd = () => {
+  const collectionTd = document.getElementsByTagName("td");
+  for (let i = 0; i < collectionTd.length; i++) {
+    console.log(collectionTd[i].textContent);
+  }
+};
 
 /* ESERCIZIO 23
   Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
