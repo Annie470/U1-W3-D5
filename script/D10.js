@@ -81,7 +81,7 @@ const whoIsBigger = (n1, n2) => {
   // } else {
   //   return n2;
   // }
-  return Math.max(n1, n2); //molto bello l'oggetto Math
+  return Math.max(n1, n2); //molto bello l'oggetto Math, grazie Mentor
 };
 console.log(whoIsBigger(15, 97));
 
@@ -124,7 +124,7 @@ const onlyLetters = (stringaAlfanumerica) => {
   //filtro array in base a condizione che i != da un num
   //ogni i deve essere passata a numero e se è NaN passa in array
   const arrFiltrato = arrStringa.filter((i) => isNaN(parseInt(i)));
-  //converto l'array in stringa
+  //ri-converto l'array in stringa
   const nuovaStringa = arrFiltrato.join(" ");
   //restituisco la stringa nuova
   return nuovaStringa;
@@ -134,44 +134,120 @@ console.log(onlyLetters("Oggi ho bevuto 8000 caffè"));
 /* ESERCIZIO 6
   Crea una funzione chiamata "isThisAnEmail" che riceve una stringa come parametro e ritorna true se la stringa è un valido indirizzo email.
 */
+const isThisAnEmail = (stringa) => {
+  //cerco la @ //se c'è ritorna true
+  return stringa.includes("@") ? true : false; //madò che bello questo operatore ternario
+};
+console.log(isThisAnEmail("anna_delise@libero.it"));
 
 /* ESERCIZIO 7
   Scrivi una funzione chiamata "whatDayIsIt" che ritorna il giorno della settimana corrente.
 */
+const whatDayIsIt = () => {
+  // return (giorno = new Date().getDay()); mi restituisce un numero, il numero della settimaaaaanaaaaaaaa
+  //creo un array di giorni
+  const arrGiorni = [
+    "Domenica",
+    "Lunedì",
+    "Martedì",
+    "Mercoledì",
+    "Giovedì",
+    "Venerdì",
+    "Sabato",
+  ];
+  //prendo il numero del giorno da Date()
+  let giorno = new Date().getDay();
+  //restituisco  l'elemento che come indice giorno
+  return arrGiorni[giorno];
+};
+console.log(whatDayIsIt());
 
 /* ESERCIZIO 8
   Scrivi una funzione chiamata "rollTheDices" che riceve un numero come parametro.
   Deve invocare la precedente funzione dice() il numero di volte specificato nel parametro, e deve tornare un oggetto contenente una proprietà "sum":
   il suo valore deve rappresentare il totale di tutti i valori estratti con le invocazioni di dice().
   L'oggetto ritornato deve anche contenere una proprietà "values", contenente un array con tutti i valori estratti dalle invocazioni di dice().
-
   Example:
   rollTheDices(3) => ritorna {
       sum: 10
       values: [3, 3, 4]
   }
 */
+const rollTheDices = (n) => {
+  //deve invocare dice() * n
+  let i = 0;
+  const obj = { sum: 0, values: [] };
+  //deve tornare un {} che abbia .sum:value la somma di tutti i risultati di dice()
+  while (i < n) {
+    // deve salvare il risultato corrente di dice() e sommarlo e inserirlo nell array
+    let resultDice = dice();
+    obj.values.push(resultDice);
+    // obj.sum += resultDice;
+    // // con reduce che pavoneggiamento
+    obj.sum = obj.values.reduce((acc, n) => acc + n, 0);
+    i++;
+  }
+  return obj;
+  // per ogni roll devo salvare il valore in un array {}.values[]
+};
+console.log(rollTheDices(3));
 
 /* ESERCIZIO 9
   Scrivi una funzione chiamata "howManyDays" che riceve una data come parametro e ritorna il numero di giorni trascorsi da tale data.
 */
+// console.log(Date()) cosa mi ritorna?
+const howManyDays = (data) => {
+  // //oggi
+  //   const oggi = new Date();
+  //   // la data inserita
+  //   const dataInserita = new Date(data);
+  //   //la loro differnza mi restituisce millisecondi
+  //   const millisecondi = oggi - dataInserita;
+  const millisecondi = new Date() - new Date(data);
+  //come si convertono i millisecondi in giorni -> grazie google :)
+  return (giorni = Math.floor(millisecondi / (1000 * 60 * 60 * 24)));
+};
+console.log(howManyDays("2025-05-12"));
 
 /* ESERCIZIO 10
   Scrivi una funzione chiamata "isTodayMyBirthday" che deve ritornare true se oggi è il tuo compleanno, falso negli altri casi.
 */
+const isTodayMyBirthday = (data) => {
+  //prendo il mese e il giorno di oggi
+  const oggi = new Date().getDate(); // mi da il giorno esatto di oggi
+  const mese = new Date().getMonth() + 1; //perchè giustamente funziona come i giorni
+  //il mio complino 19/11
+  if ((oggi === 19) & (mese === 11)) {
+    return true;
+  } else {
+    return false;
+  }
+};
+console.log(isTodayMyBirthday());
 
 // Arrays & Oggetti
-
 // NOTA: l'array "movies" usato in alcuni esercizi è definito alla fine di questo file
-
 /* ESERCIZIO 11
   Scrivi una funzione chiamata "deleteProp" che riceve un oggetto e una stringa come parametri; deve ritornare l'oggetto fornito dopo aver eliminato
   in esso la proprietà chiamata come la stringa passata come secondo parametro.
 */
+const Igor = {
+  specie: "cane",
+  razza: "fantasia",
+  anni: "10",
+};
+console.log(Igor);
+const deleteProp = (oggetto, stringa) => {
+  delete oggetto[stringa]; //elimino la proprietà oggetto.stringa era il valore
+  return oggetto;
+};
+console.log(deleteProp(Igor, "anni"));
 
 /* ESERCIZIO 12
   Scrivi una funzione chiamata "newestMovie" che trova il film più recente nell'array "movies" fornito.
 */
+//ma non l'avevamo gia fatto?
+const newestMovie = () => {};
 
 /* ESERCIZIO 13
   Scrivi una funzione chiamata countMovies che ritorna il numero di film contenuti nell'array "movies" fornito.
