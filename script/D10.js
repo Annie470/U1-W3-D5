@@ -479,47 +479,116 @@ const testoTd = () => {
 /* ESERCIZIO 23
   Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
 */
+const aggBgColor = () => {
+  const nodeListA = document.querySelectorAll("a");
+  nodeListA.forEach((a) => {
+    a.style.backgroundColor = "red";
+  });
+};
 
 /* ESERCIZIO 24
   Scrivi una funzione per aggiungere un nuovo elemento alla lista non ordinata con id "myList".
 */
+const aggiungiLi = () => {
+  //prendo la ul con id myList
+  const ul = document.getElementById("myList");
+  //creo li
+  const li = document.createElement("li");
+  //appnedo li al padre
+  ul.appendChild(li);
+};
 
 /* ESERCIZIO 25
   Scrivi una funzione per svuotare la lista non ordinata con id "myList".
 */
+const svuotaUl = () => {
+  const ul = document.getElementById("myList");
+  ul.innerHTML = ""; //non ho tempo per lavorare sui figli :( con removeChild() in ciclooooo
+};
 
 /* ESERCIZIO 26
   Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
 */
+const classeAiTr = () => {
+  const nodeListTr = document.querySelectorAll("tr");
+  nodeListTr.forEach((tr) => {
+    tr.classList.add("test");
+  });
+};
 
 // [EXTRA] JS Avanzato
 
 /* ESERCIZIO 27
   Crea una funzione chiamata "halfTree" che riceve un numero come parametro e costruisce un mezzo albero di "*" (asterischi) dell'altezza fornita.
-
   Esempio:
   halfTree(3)
-
   *
   **
   ***
-
 */
+const halfTree = (n) => {
+  //n è l altezza
+  for (let i = 1; i <= n; i++) {
+    let ramo = "";
+    //ma devo ciclare l'asterisco che ad ogni giro aumenta fino ad arrivare a i asterischi
+    for (let b = 0; b < i; b++) {
+      ramo = ramo + "*";
+    }
+    console.log(ramo);
+  }
+};
+halfTree(4);
 
 /* ESERCIZIO 28
   Crea una funzione chiamata "tree" che riceve un numero come parametro e costruisce un albero di "*" (asterischi) dell'altezza fornita.
-
   Esempio:
   tree(3)
-
     *
    ***
   *****
-
 */
+const tree = (n) => {
+  // n è sempre l altezza
+  for (let i = 1; i <= n; i++) {
+    let ramo = "*"; //senno mi mangia la punta
+    let spazio = "";
+    //devo ridurre lo spazio a sinistra prima dell'asterisco fino a 0
+    //l'asterisco però occupa sempre uno spazio
+    //se sono tre righe e quindi l'altezza di 3, lo spazio del primo asterisco sarà n-1
+    //n-i si aggiorna di uno ad ogni ciclo
+    //per creare lo spazio che diminuisce ogni volta
+    for (let c = 0; c < n - i; c++) {
+      spazio = spazio + " ";
+    }
+    //ciclo gli asterischi come prima che mi restitiscono il ramo
+    //solo che adesso aumentano di due ad ogni riga
+    for (let b = 1; b < i; b++) {
+      //parto da b=1 perche mi deve saltare la prima volta
+      ramo = ramo + "**"; //ne aggiungo 2
+    }
+    //funzionerà? devo unire PRIMA spazio POI *
+    console.log(spazio + ramo);
+  }
+};
+tree(7);
 
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
 */
+const isItPrime = (n) => {
+  //come faccio a capire se un numero è primo?
+  //maggiore di 1
+  if (n < 1) return false;
+  //2 unico pari primo ma tutti gli altri no
+  if (n === 2) return true;
+  if (n % 2 === 0) return false;
+  //SE divisibile per i numeri compresi tra 3 e la sua radice quadrata ----> grazie Google :)
+  for (let i = 3; i <= Math.sqrt(n); i += 2) {
+    // i+=2 perche mi salta i pari
+    if (n % i === 0) return false;
+  }
+  return true; // se esclude tutto il resto
+};
+console.log(isItPrime(11));
 
 /* Questo array viene usato per gli esercizi. Non modificarlo. */
