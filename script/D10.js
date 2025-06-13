@@ -87,14 +87,33 @@ console.log(whoIsBigger(15, 97));
 
 /* ESERCIZIO 3
   Crea una funzione chiamata "splitMe" che riceve una stringa come parametro e ritorna un'array contenente ogni parola della stringa.
-
   Es.: splitMe("I love coding") => ritorna ["I", "Love", "Coding"]
 */
+const splitMe = (stringa) => {
+  return stringa.split(" ");
+};
+console.log(splitMe("Ho fatto schifo al bench"));
 
 /* ESERCIZIO 4
   Crea una funzione chiamata "deleteOne" che riceve una stringa e un booleano come parametri.
   Se il valore booleano è true la funzione deve ritornare la stringa senza il primo carattere, altrimenti la deve ritornare senza l'ultimo.
 */
+const deleteOne = (stringa, booleano) => {
+  if (typeof booleano !== "boolean") {
+    return "Assicurati di aver inserito i parametri corretti: una stringa come primo parametro e un booleano come secondo";
+  }
+  // if (booleano === true) {
+  //   return stringa.slice(1, stringa.length);
+  // } else {
+  //   return stringa.slice(0, -1);
+  // }
+  //essendo solo due condizioni provo l operatore ternario per non fare due if orribili
+  return booleano === true
+    ? stringa.slice(1, stringa.length)
+    : stringa.slice(0, -1);
+};
+
+console.log(deleteOne("Fa tanto caldo oggi", true));
 
 /* ESERCIZIO 5
   Crea una funzione chiamata "onlyLetters" che riceve una stringa come parametro e la ritorna eliminando tutte le cifre numeriche.
