@@ -112,14 +112,24 @@ const deleteOne = (stringa, booleano) => {
     ? stringa.slice(1, stringa.length)
     : stringa.slice(0, -1);
 };
-
 console.log(deleteOne("Fa tanto caldo oggi", true));
 
 /* ESERCIZIO 5
   Crea una funzione chiamata "onlyLetters" che riceve una stringa come parametro e la ritorna eliminando tutte le cifre numeriche.
-
   Es.: onlyLetters("I have 4 dogs") => ritorna "I have dogs"
 */
+const onlyLetters = (stringaAlfanumerica) => {
+  // converto stringa in array
+  const arrStringa = stringaAlfanumerica.split(" ");
+  //filtro array in base a condizione che i != da un num
+  //ogni i deve essere passata a numero e se è NaN passa in array
+  const arrFiltrato = arrStringa.filter((i) => isNaN(parseInt(i)));
+  //converto l'array in stringa
+  const nuovaStringa = arrFiltrato.join(" ");
+  //restituisco la stringa nuova
+  return nuovaStringa;
+};
+console.log(onlyLetters("Oggi ho bevuto 8000 caffè"));
 
 /* ESERCIZIO 6
   Crea una funzione chiamata "isThisAnEmail" che riceve una stringa come parametro e ritorna true se la stringa è un valido indirizzo email.
